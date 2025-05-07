@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Lyrics Generator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Generate Song Lyrics and Music</h1>
+    <form method="post">
+        <label>Choose a theme (optional):</label>
+        <select name="theme">
+            <option value="">-- Select Theme --</option>
+            <option value="love">Love</option>
+            <option value="sad">Sad</option>
+            <option value="happy">Happy</option>
+            <option value="inspirational">Inspirational</option>
+        </select>
+
+        <label>Or write your own lyrics:</label>
+        <textarea name="custom_lyrics" rows="10" placeholder="Write your lyrics here..."></textarea>
+
+        <input type="submit" value="Generate">
+    </form>
+
+    {% if lyrics %}
+        <h2>Generated Lyrics:</h2>
+        <pre>{{ lyrics }}</pre>
+        <a href="{{ url_for('download_file', filename='lyrics.txt') }}">📄 Download Lyrics (.txt)</a><br>
+        <a href="{{ url_for('download_file', filename='music.wav') }}">🎶 Download Music (.wav)</a><br>
+        <a href="{{ url_for('download_file', filename='tts.wav') }}">📢 Download Voice Note (.wav)</a><br>
+    {% endif %}
+</body>
+</html>
+
+
+
+
